@@ -1,0 +1,38 @@
+extend default
+
+block content
+  video(id="video" src="" controls="true")
+  video(id="video2" src="" controls="true")
+  div
+    canvas(id="c1" width="300" height="169")
+    //- canvas(id="c2" width="160" height="96")
+    //- canvas(id="c3" width="160" height="96")
+  br
+  input(id="slider" type="range", name="slider" style="width:500px" min="0" max="1000" value="0")
+  br
+  svg(id="svg" class="mysvg" width="300px" height="50px" viewBox="0 0 300 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1")
+    path(id="path")
+      animate(attributeName="d" from="m0,30 h0" to="m0,30 h1100" dur="4s" begin="0s" repeatCount="indefinite")
+    text(font-size="26" font-family="Montserrat" fill='hsla(36, 95%, 85%, 1)')
+      textPath(xlink:href="#path").
+        Animated Typing
+  br
+  button(onclick="togglePlay()").
+    play
+  br
+  svg(width="300px" height="50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1")
+    rect(x="0" y="0" width="300px" height="50px" fill="black" stroke="black" stroke-width="1")
+    path(id="path2")
+      animate(attributeName="d" from="m0,30 h0" to="m0,30 h1100" dur="4s" begin="0s" repeatCount="indefinite")
+    text(font-size="26" font-family="Montserrat" fill='hsla(36, 95%, 85%, 1)')
+      textPath(xlink:href="#path2").
+        Animated Typing
+  br
+  svg(width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1")
+    rect(x="0" y="0" width="300px" height="300px" fill="black" stroke="black" stroke-width="1")
+    //- polyline(points="0,0 0,50 200,50, 100,100" stroke="white" stroke-width="2")
+    //- circle(cx="0" cy="0" r="2" fill="blue" stroke="yellow" stroke-width="1")
+    //-   animateMotion(path="M 0,0 C 0,50 200,50 100,100" dur="4s" repeatCount="indefinite")
+    polyline(points="0,0 100,0 100,100" stroke="white" stroke-width="2")
+    circle(cx="0" cy="0" r="2" fill="blue" stroke="yellow" stroke-width="1")
+      animateMotion(path="M 0,0 Q 100,0 100,100" dur="4s" repeatCount="indefinite")
