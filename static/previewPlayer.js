@@ -6,7 +6,7 @@
  */
 function previewPlayer(sliderElement, canvas, previewData, videoElements) {
   let playing = false;
-  const TIMER_INTERVAL = 20; // ms
+  const TIMER_INTERVAL = 30; // ms
   const SLIDER_MAX = 10000; // sec
   let canvasContext = canvas.getContext("2d");
   let previewScript = null;
@@ -161,7 +161,17 @@ function previewPlayer(sliderElement, canvas, previewData, videoElements) {
         currentAnimationContext.currentVideoAction.action(currentAnimationContext);
       }
     };
+
+    // showCinemaEffect();
   }
+
+  // function showCinemaEffect() {
+  //   let v3 = document.getElementById("video3");
+  //   currentAnimationContext.canvasContext.globalAlpha = 0.4;
+  //   currentAnimationContext.canvasContext.drawImage(v3, 0, 0,
+  //     currentAnimationContext.canvasContext.canvas.width,
+  //     currentAnimationContext.canvasContext.canvas.height);
+  // }
 
   function getNewAnimationContext() {
     let newContext = new animationContext(previewScript, canvasContext, getCurrentTime());

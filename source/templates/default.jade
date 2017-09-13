@@ -2,6 +2,7 @@ doctype html
 html
   head
     link(rel='stylesheet', href='/css/index.css')
+    link(rel='stylesheet', href='/css/cinema.css')
     title World Wide Web
     script(src="previewPlayer.js")
     script(src="animationContext.js")
@@ -9,11 +10,9 @@ html
     script(src="purePlay.js")
     script(src="fade.js")
     script(src="merge.js")
+    script(src="black-and-white.js")
+    script(src="convolutedFilter.js")
     script(src="svgOverlay.js")
+    script(src="oldFilm.js")
   body(onload="pageLoad()")
-    
-    .main-content
-      block content
-
-    .footer
-      p Copyright © 2020 Futurecorpz. Futurecorpz ® is a Registered Trademark of Futures (un)Ltd. in the Mars Community and other solar systems.
+    block content

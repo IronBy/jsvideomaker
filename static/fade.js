@@ -15,7 +15,7 @@ function fade(options) {
     let video = previewContext.videos[0];
     let canvas = previewContext.canvasContext.canvas;
 
-    play.draw(previewContext, previewContext.videos);
+    play.draw(previewContext);
     previewContext.canvasContext.globalAlpha = getAlpha(previewContext);
     previewContext.canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   }
