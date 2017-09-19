@@ -1,6 +1,10 @@
 function pageLoad() {
   // new convolutedFilter().draw();
 
+  let v = document.getElementById("video");
+  document.getElementById("video").volume = 0;
+  document.getElementById("video2").volume = 0;
+
   window.myplayer = new previewPlayer(
     document.getElementById("slider"),
     document.getElementById("c1"),
@@ -23,17 +27,17 @@ function pageLoad() {
         // }
       ],
       transitions: [
-        {
-          start: 0,
-          duration: 4,
-          effect: new oldFilm({
-            scratches: [
-              // "scratch1.jpg",
-              "scratch2.png",
-              // "scratch-and-vignette.jpg"
-            ]
-          })
-        }
+        // ------------ Old Movie filter ------------
+        // {
+        //   start: 0,
+        //   duration: 8,
+        //   effect: new oldFilm({
+        //     scratches: [
+        //       "scratch2.png",
+        //     ]
+        //   })
+        // }
+        // ------------ Fade in/out and Merge transitions ------------
         // {
         //   start: 0,
         //   duration: 2,
@@ -60,23 +64,26 @@ function pageLoad() {
         //     duration: 2
         //   })
         // },
+        // ------------ Black and White filter ------------
         // {
-        //   start: 2,
-        //   duration: 3,
+        //   start: 0,
+        //   duration: 8,
         //   effect: new blackAndWhite()
         // },
+        // ------------ Convoluted filter ------------
         // {
         //   start: 0,
         //   duration: 8,
         //   effect: new convolutedFilter()
         // },
-        // {
-        //   start: 0,
-        //   duration:3,
-        //   effect: new svgOverlay({
-        //     svgImage: document.getElementById("svg")
-        //   })
-        // }
+        // ------------ SVG overlay ------------
+        {
+          start: 0,
+          duration:8,
+          effect: new svgOverlay({
+            svgImage: document.getElementById("svg")
+          })
+        }
       ]
     },
     [
@@ -84,6 +91,8 @@ function pageLoad() {
       document.getElementById("video2"),
       // document.getElementById("video3")
     ]);
+    // v.defaultPlaybackRate = 0.5;
+    // v.playbackRate = 0.5;
 }
 
 function togglePlay() {

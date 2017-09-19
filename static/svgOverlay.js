@@ -32,8 +32,8 @@ function svgOverlay(options) {
     img.src = image64;
     let canvas = previewContext.canvasContext.canvas;
 
-    previewContext.canvasContext.globalAlpha = 0.5;
-    previewContext.canvasContext.drawImage(img, 0, 0);//, canvas.width, canvas.height);
+    previewContext.canvasContext.globalAlpha = 1;
+    previewContext.canvasContext.drawImage(img, 0, 130);//, canvas.width, canvas.height);
 
     if (options.svgImage.animationsPaused()) {
       options.svgImage.unpauseAnimations();

@@ -3,16 +3,16 @@ function convolutedFilter(options) {
 
   // Filter size must be N x N where N is uneven (3x3, 5x5 and 7x7)
   // The sum of all elements of the filter should be 1. Bias from 1 affects brightness
+    // let filter = [
+    //   1,  1,  1,
+    //   1, -7,  1,
+    //   1,  1,  1
+    // ];
   let filter = [
-    1,  1,  1,
-    1, -7,  1,
-    1,  1,  1
+    1, 1, 1,
+    1, 0.7, -1,
+    -1, -1, -1
   ];
-  // let filter = [
-  //   1, 1, 1,
-  //   1, 0.7, -1,
-  //   -1, -1, -1
-  // ];
 
   let filterWidth = Math.round(Math.sqrt(filter.length));
   let halfFilterWidth = Math.floor(filterWidth / 2);

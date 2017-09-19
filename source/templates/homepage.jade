@@ -5,8 +5,7 @@ block content
   video(id="video2" src="" controls="true")
   //- video(id="video3" src="" controls="true")
   br
-  div
-    canvas(id="c1" width="400" height="225")
+  canvas(id="c1" width="400" height="225")
     //- canvas(id="c2" width="160" height="96")
     //- canvas(id="c3" width="160" height="96")
   br
@@ -22,13 +21,13 @@ block content
   //-       .background.grain
   br
   //- Animated text with SVG
-  //- svg(id="svg" width="300px" height="50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1")
-  //-   rect(x="0" y="0" width="300px" height="50px" fill="black" stroke="black" stroke-width="1")
-  //-   path(id="path2")
-  //-     animate(attributeName="d" from="m0,30 h0" to="m0,30 h1100" dur="4s" begin="0s" repeatCount="indefinite")
-  //-   text(font-size="26" font-family="Montserrat" fill='hsla(36, 95%, 85%, 1)')
-  //-     textPath(xlink:href="#path2").
-  //-       Animated Typing
+  svg(id="svg" style="display:none" width="300px" height="50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1")
+    //- rect(x="0" y="0" width="300px" height="50px" fill="black" stroke="black" stroke-width="1")
+    path(id="path2")
+      animate(attributeName="d" from="m0,30 h0" to="m0,30 h1100" dur="3s" begin="0s" repeatCount="indefinite")
+    text(font-size="26" font-family="Montserrat" fill='hsla(36, 95%, 85%, 1)')
+      textPath(xlink:href="#path2").
+        Animated Typing
   //- br
   
   br

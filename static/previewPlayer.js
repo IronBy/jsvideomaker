@@ -124,7 +124,7 @@ function previewPlayer(sliderElement, canvas, previewData, videoElements) {
     }
 
     if (playing) {
-      setTimeout(onTimerTick, TIMER_INTERVAL); 
+      setTimeout(onTimerTick, TIMER_INTERVAL);
     }
   }
 

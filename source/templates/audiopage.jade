@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Audio demo page
+    script(src="audio-index.js")
+
+  audio(id="audio1" controls="true")
+  br
+  audio(id="audio2" controls="true")
+  br
+  button(onclick="togglePlay()").
+    Play/Pause
+  button(onclick="reset()").
+    Reset
