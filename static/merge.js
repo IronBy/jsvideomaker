@@ -5,12 +5,6 @@ function merge(options) {
     draw: draw
   };
 
-  /**
-   * Draw current video frame
-   * @param {CanvasRenderingContext2D} canvasContext Context of a canvas
-   * @param {HTMLVideoElement[]} videos Videos to be shown
-   * @param {Object} previewContext
-   */
   function draw(previewContext) {
     // We assume this effect applies for two videos only
     let video1 = previewContext.videos[0];
@@ -35,7 +29,6 @@ function merge(options) {
   }
 
   function getTransitionLastsPercent(previewContext) {
-    // let expectedStartTime = video.duration - options.duration;
     let transitionLastsTime = Math.max(0, previewContext.currentTime - options.start);
     return Math.min(1, transitionLastsTime / options.duration);
   }

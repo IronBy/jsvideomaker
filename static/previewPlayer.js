@@ -2,11 +2,11 @@
  * 
  * @param {HTMLInputElement} sliderElement 
  * @param {Object} previewData 
+ * @param {HTMLCanvasElement} canvas
  * @param {HTMLVideoElement[]} videoElements
  */
 function previewPlayer(sliderElement, canvas, previewData, videoElements) {
   let playing = false;
-  const TIMER_INTERVAL = 30; // ms
   const SLIDER_MAX = 10000; // sec
   let canvasContext = canvas.getContext("2d");
   let previewScript = null;
@@ -70,8 +70,16 @@ function previewPlayer(sliderElement, canvas, previewData, videoElements) {
 
   function play() {
     playing = true;
-    doAnimationRound();
-    scheduleNextTick();
+    requestAnimationFrame(doAnimationRound);
+  }
+
+  function stop() {
+    playing = false;
+    sliderElement.value = 0;
+    videoElements.forEach(function(videoElement) {
+      videoElement.pause();
+      videoElement.currentTime = 0;
+    }, this);
   }
 
   function pause() {
@@ -92,17 +100,6 @@ function previewPlayer(sliderElement, canvas, previewData, videoElements) {
     sliderElement.oninput = doAnimationRound;
   }
 
-  function onTimerTick() {
-    // Do nothing if player paused
-    if (!playing) {
-      return;
-    }
-
-    setNewSliderValue();
-    doAnimationRound();
-    scheduleNextTick();
-  }
-
   function setNewSliderValue() {
     // Here we have bug when merge two videos.
     // It happens due to lag between time when we want to start next video and when it actually starts
@@ -117,21 +114,11 @@ function previewPlayer(sliderElement, canvas, previewData, videoElements) {
       return time;
   }
 
-  function scheduleNextTick() {
-    if (sliderElement.value === sliderElement.max) {
-      pause();
-      sliderElement.value = 0;
-    }
-
-    if (playing) {
-      setTimeout(onTimerTick, TIMER_INTERVAL);
-    }
-  }
-
   function setupVideoElements() {
     for (var i = 0; i < videoElements.length; i++) {
       // Prevent immediate video playing
       videoElements[i].autoplay = false;
+      videoElements[i].volume = 0;
       // Preload video metadata
       if (i < previewData.videos.length) {
         videoElements[i].src = previewData.videos[i].url;
@@ -140,9 +127,15 @@ function previewPlayer(sliderElement, canvas, previewData, videoElements) {
   }
   
   function doAnimationRound() {
+    if (sliderElement.value === sliderElement.max) {
+      stop();
+    }
+
     if (!playing) {
       return;
     }
+
+    setNewSliderValue();
 
     currentAnimationContext = getNewAnimationContext();
 
@@ -162,16 +155,10 @@ function previewPlayer(sliderElement, canvas, previewData, videoElements) {
       }
     };
 
-    // showCinemaEffect();
+    if (playing) {
+      requestAnimationFrame(doAnimationRound);
+    }
   }
-
-  // function showCinemaEffect() {
-  //   let v3 = document.getElementById("video3");
-  //   currentAnimationContext.canvasContext.globalAlpha = 0.4;
-  //   currentAnimationContext.canvasContext.drawImage(v3, 0, 0,
-  //     currentAnimationContext.canvasContext.canvas.width,
-  //     currentAnimationContext.canvasContext.canvas.height);
-  // }
 
   function getNewAnimationContext() {
     let newContext = new animationContext(previewScript, canvasContext, getCurrentTime());

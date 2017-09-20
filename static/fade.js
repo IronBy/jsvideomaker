@@ -5,11 +5,6 @@ function fade(options) {
     draw: draw
   };
 
-  /**
-   * Draw current video frame
-   * @param {CanvasRenderingContext2D} canvasContext Context of a canvas
-   * @param {HTMLVideoElement[]} videos Videos to be shown
-   */
   function draw(previewContext) {
     // We assume this effect applies for one video only
     let video = previewContext.videos[0];

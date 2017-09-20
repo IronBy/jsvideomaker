@@ -3,16 +3,16 @@ function convolutedFilter(options) {
 
   // Filter size must be N x N where N is uneven (3x3, 5x5 and 7x7)
   // The sum of all elements of the filter should be 1. Bias from 1 affects brightness
-    // let filter = [
-    //   1,  1,  1,
-    //   1, -7,  1,
-    //   1,  1,  1
-    // ];
   let filter = [
-    1, 1, 1,
-    1, 0.7, -1,
-    -1, -1, -1
+    1,  1,  1,
+    1, -7,  1,
+    1,  1,  1
   ];
+// let filter = [
+//   1, 1, 1,
+//   1, 0.7, -1,
+//   -1, -1, -1
+// ];
 
   let filterWidth = Math.round(Math.sqrt(filter.length));
   let halfFilterWidth = Math.floor(filterWidth / 2);
@@ -51,6 +51,7 @@ function convolutedFilter(options) {
           for (let filterX = 0; filterX < filterWidth; filterX++) {
             let scy = y + filterY - halfFilterWidth;
             let scx = x + filterX - halfFilterWidth;
+
             if (scy >= 0 && scy < imgHeight && scx >= 0 && scx < imgWidth) {
               let srcImageIndex = (scy * imgWidth + scx) * 4;
               let wt = filter[filterY * filterWidth + filterX];

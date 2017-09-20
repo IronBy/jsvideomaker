@@ -25,6 +25,7 @@ function oldFilm(opts) {
     let imgWidth = canvas.width;
     let imgHeight = canvas.height;
 
+    // Move a scratches picture around randomly
     let biasX = Math.floor(Math.random() * 1000);
     let biasY = Math.floor(Math.random() * 1000);
     context.drawImage(images[currentImageIdx], -biasX, -biasY, imgWidth + biasX, imgHeight + biasY);

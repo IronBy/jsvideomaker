@@ -1,4 +1,5 @@
 let vid = null;
+
 window.onload = function () {
   if(Hls.isSupported()) {
     var video = document.getElementById('video');
@@ -8,7 +9,7 @@ window.onload = function () {
     hls.attachMedia(video);
     hls.on(Hls.Events.MANIFEST_PARSED,function() {
       video.play();
-      drawFrame();
+      requestAnimationFrame(drawFrame);
     });
   }
 }
@@ -17,6 +18,5 @@ function drawFrame() {
   let canvas = document.getElementById("c1");
   let context = canvas.getContext('2d');
   context.drawImage(vid, 0, 0, canvas.width, canvas.height);
-
-  setTimeout(drawFrame, 40);
+  requestAnimationFrame(drawFrame);
 }

@@ -14,39 +14,29 @@ function svgOverlay(options) {
     onEnd: stopDisplaying
   };
 
-  /**
-   * Draw current video frame
-   * @param {CanvasRenderingContext2D} canvasContext Context of a canvas
-   * @param {HTMLVideoElement[]} videos Videos to be shown
-   */
   function draw(previewContext) {
     play.draw(previewContext);
 
     if (!show) {
       show = true;
+      // TODO: Current Time should be calculated correctly depending on overal current time
       options.svgImage.setCurrentTime(0);
-      // options.svgImage.style.display = '';
     }
     
+    if (options.svgImage.animationsPaused()) {
+      options.svgImage.unpauseAnimations();
+    }
     
     img.src = image64;
     let canvas = previewContext.canvasContext.canvas;
 
     previewContext.canvasContext.globalAlpha = 1;
     previewContext.canvasContext.drawImage(img, 0, 130);//, canvas.width, canvas.height);
-
-    if (options.svgImage.animationsPaused()) {
-      options.svgImage.unpauseAnimations();
-    }
   }
 
   function stopDisplaying() {
-    return;
     show = false;
-    if (options.svgImage.pauseAnimation) {
-      options.svgImage.pauseAnimation();
-    }
+    options.svgImage.pauseAnimations();
     options.svgImage.setCurrentTime(0);
-    // options.svgImage.style.display = 'none';
   }
 }
